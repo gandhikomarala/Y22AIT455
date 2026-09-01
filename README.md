@@ -17,8 +17,8 @@ Scalable URL Analytics & Link Shortener Platform is a production-grade enterpris
 
 ### 1. Set Up Python Virtual Environment
 ```bash
-git clone gandhikomarala/Y22AIT455.git
-cd url_shortener_y22ait455
+git clone git@github.com:gandhikomarala/Y22AIT455.git
+cd Y22AIT455
 python -m venv venv
 # Windows:
 .\venv\Scripts\activate
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 
 Build containerized production image locally:
 ```bash
-docker build -t url_shortener_y22ait455:latest .
+docker build -t Y22AIT455:latest .
 ```
 
 ---
