@@ -1,0 +1,8 @@
+{
+  "name": "url_shortener_y22ait455",
+  "version": "2.4.0",
+  "scripts": {
+    "test": "pytest tests/",
+    "build": "docker build -t url_shortener_y22ait455 ."
+  }
+}

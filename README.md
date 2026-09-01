@@ -1,57 +1,77 @@
-# Scalable URL Shortener & Real-Time Clickstream Analytics Platform
+# Scalable URL Analytics & Link Shortener Platform
 
-[![CI Pipeline](https://github.com/gandhikomarala/Y22AIT455/actions/workflows/ci.yml/badge.svg)](https://github.com/gandhikomarala/Y22AIT455/actions)
-[![Security Audit](https://github.com/gandhikomarala/Y22AIT455/actions/workflows/security-scan.yml/badge.svg)](https://github.com/gandhikomarala/Y22AIT455/actions)
-[![Python: 3.10 | 3.11 | 3.12](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-brightgreen.svg)](pyproject.toml)
-[![Lines of Code](https://img.shields.io/badge/LOC-51,817-informational.svg)](README.md)
-
-A high-performance, distributed URL shortening service, sub-millisecond edge redirection engine, and real-time clickstream analytics platform built with Next.js, FastAPI, Redis, Kafka, and PostgreSQL with **51,817+ verified lines of code**.
+Scalable URL Analytics & Link Shortener Platform is a production-grade enterprise application designed with domain-driven architecture, automated quality validation, and high-performance microservices.
 
 ---
 
-## Key Architecture Subsystems
+## Dependencies
 
-1. **Distributed Key Generation Service (KGS)**: Pre-generates unique Base62 tokens with multi-region range allocation (`backend/services/key_generation_service`).
-2. **Edge Redirection Engine**: Low-latency LRU & Redis cache clusters delivering sub-millisecond 301/302 redirects (`backend/services/edge_redirection_engine`).
-3. **Real-Time Clickstream Telemetry**: Asynchronous Kafka/EventHub event streaming with GeoIP and device fingerprint enrichment (`backend/services/clickstream_telemetry`).
-4. **Phishing & Malware Threat Scanner**: Real-time URL reputation analysis, heuristic domain validator, and malicious link blocking (`backend/services/phishing_security_scanner`).
-5. **Analytics & Aggregation Engine**: Hourly and daily rollup workers calculating CTR, unique visitors, browser distribution, and geo heatmaps (`backend/services/analytics_aggregation`).
-6. **Rate Limiting & Governance**: Sliding-window rate limiter protecting edge APIs against scrapers and DDoS traffic (`backend/services/rate_limiter_governance`).
-7. **Frontend Console**: Interactive Next.js web application for URL management, QR code generation, and analytics dashboards (`url-shortener-app/`).
+* **Runtime**: Python 3.10+ / Node.js 18+
+* **Framework**: FastAPI, Uvicorn, Pydantic v2
+* **Quality & Test**: Pytest, Pytest-cov
+* **Frontend**: HTML5 Canvas / ES6+, Zero-Dependency Web Client
 
 ---
 
-## Quick Start & Local Execution
+## Installation
 
-### Prerequisites
-- Python 3.10+ & Node.js 18+
-- Git
-
-### Installation
+### 1. Set Up Python Virtual Environment
 ```bash
-git clone git@github.com:gandhikomarala/Y22AIT455.git
-cd Y22AIT455
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+git clone gandhikomarala/Y22AIT455.git
+cd url_shortener_y22ait455
+python -m venv venv
+# Windows:
+.\venv\Scripts\activate
+# Linux/macOS:
+source venv/bin/activate
+```
+
+### 2. Install Dependencies
+```bash
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### Running Tests
-```bash
-pytest backend/tests/ -v
-```
+---
 
-### Running the Local Demo
+## Build
+
+Build containerized production image locally:
 ```bash
-python scripts/demo_run.py
+docker build -t url_shortener_y22ait455:latest .
 ```
 
 ---
 
-## TrainPlex Quality Compliance
+## Run
 
-- **Total Audited LOC**: 51,817 LOC (50,000+ requirement met)
-- **Commit History**: 6 structured modular commits
-- **Pull Requests**: 4 active pull requests with passing CI
-- **Automated Tests**: Unit, integration, and health invariant suites
-- **CI/CD Pipeline**: GitHub Actions matrix test runner and SAST security scans
+### Microservice Execution
+```bash
+python -m uvicorn Backend.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+### Containerized Orchestration
+```bash
+docker-compose up -d --build
+```
+
+### Static Web UI
+```bash
+python -m http.server 8000
+```
+
+---
+
+## Usage
+
+1. Access the web dashboard via `http://localhost:8000` or the live GitHub Pages link.
+2. Interact with the core domain engine, real-time analytics, and data persistence layers.
+
+---
+
+## Testing
+
+Execute the automated test suite with coverage report:
+```bash
+pytest tests/ -v
+```
